@@ -9,9 +9,7 @@
       margin: 40px;
       background-color: #f4f4f4;
     }
-    h1 {
-      text-align: center;
-    }
+    h1 { text-align: center; }
     .doc-list {
       max-width: 900px;
       margin: auto;
@@ -26,17 +24,9 @@
       justify-content: space-between;
       align-items: center;
     }
-    .doc-info {
-      flex-grow: 1;
-    }
-    .doc-id {
-      font-size: 0.9em;
-      color: #666;
-    }
-    .doc-name {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
+    .doc-info { flex-grow: 1; }
+    .doc-id { font-size: 0.9em; color: #666; }
+    .doc-name { font-weight: bold; font-size: 1.1em; }
     .doc-actions button {
       margin-left: 10px;
       padding: 8px 12px;
@@ -53,24 +43,54 @@
 <body>
 
   <h1>My Documents</h1>
-  <div class="doc-list">
+  <div class="doc-list" id="docList"></div>
 
-    <!-- Example Document Entry -->
-    <div class="doc-item">
-      <div class="doc-info">
-        <div class="doc-name">Pan Card</div>
-        <div class="doc-id">BLTPA7776C</div>
-      </div>
-      <div class="doc-actions">
-        <button class="show-btn" onclick="window.open('https://drive.google.com/file/d/15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa/view?usp=sharing')">Show</button>
-        <button class="pdf-btn" onclick="window.open('https://drive.usercontent.google.com/download?id=15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa&export=download')">Download PDF</button>
-        <button class="img-btn" onclick="window.open('https://drive.google.com/uc?export=download&id=IMAGE_FILE_ID')">Download Image</button>
-      </div>
-    </div>
+  <script>
+    // ✅ Config array: just add new entries here
+    const documents = [
+      {
+        name: "Pan Card",
+        id: "BLTPA7776C",
+        showUrl: "https://drive.google.com/file/d/15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa/view?usp=sharing",
+        pdfUrl: "https://drive.usercontent.google.com/download?id=15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa&export=download",
+        imgUrl: "https://drive.google.com/uc?export=download&id=IMAGE_FILE_ID"
+      },
+      {
+        name: "Aadhar Card",
+        id: "840005154941",
+        showUrl: "https://drive.google.com/file/d/15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa/view?usp=sharing",
+        pdfUrl: "https://drive.usercontent.google.com/download?id=15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa&export=download",
+        imgUrl: "https://drive.google.com/uc?export=download&id=IMAGE_FILE_ID"
+      },
+      {
+        name: "Aadhar Card",
+        id: "840005154941",
+        showUrl: "https://drive.google.com/file/d/15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa/view?usp=sharing",
+        pdfUrl: "https://drive.usercontent.google.com/download?id=15Pt4hgk61GBOaU6Q1BJ-wj5jHS4IobKa&export=download",
+        imgUrl: "https://drive.google.com/uc?export=download&id=IMAGE_FILE_ID"
+      }
+      // ➡️ Add more documents here without touching HTML
+    ];
 
-    <!-- Repeat .doc-item for each document -->
-
-  </div>
+    // ✅ Rendering logic (fixed, no edits needed later)
+    const docList = document.getElementById("docList");
+    documents.forEach(doc => {
+      const item = document.createElement("div");
+      item.className = "doc-item";
+      item.innerHTML = `
+        <div class="doc-info">
+          <div class="doc-name">${doc.name}</div>
+          <div class="doc-id">${doc.id}</div>
+        </div>
+        <div class="doc-actions">
+          <button class="show-btn" onclick="window.open('${doc.showUrl}')">Show</button>
+          <button class="pdf-btn" onclick="window.open('${doc.pdfUrl}')">Download PDF</button>
+          <button class="img-btn" onclick="window.open('${doc.imgUrl}')">Download Image</button>
+        </div>
+      `;
+      docList.appendChild(item);
+    });
+  </script>
 
 </body>
 </html>
